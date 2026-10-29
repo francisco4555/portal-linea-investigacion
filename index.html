@@ -210,8 +210,6 @@ footer .wrap{padding:44px 28px}footer b{font:600 17px 'Source Serif 4';backgroun
 footer .logo2{width:64px;height:64px;float:left;margin-right:14px;mix-blend-mode:normal;border-radius:50%;background:#fff}
 .draft{border-radius:99px;background:#fff;border:1px solid #d6c8f0;color:#5a3d9a;box-shadow:0 8px 18px rgba(60,20,110,.2)}
 
-#cur{position:fixed;left:0;top:0;width:620px;height:620px;margin:-310px;border-radius:50%;pointer-events:none;z-index:9997;background:radial-gradient(circle,rgba(236,110,200,.34),rgba(150,90,220,.2) 38%,rgba(90,130,230,.1) 58%,transparent 72%);opacity:0;transition:opacity .4s,width .4s,height .4s,margin .4s}
-#cur.on{opacity:1}#cur.big{width:760px;height:760px;margin:-380px}
 #curdot{position:fixed;left:0;top:0;width:18px;height:18px;margin:-9px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 2px #fff,0 0 0 3.5px rgba(60,20,110,.3),0 0 22px 7px rgba(255,120,210,.7);pointer-events:none;z-index:10000;opacity:0;transition:width .25s,height .25s,margin .25s,opacity .3s,background .25s}
 #curdot.on{opacity:1}
 #curdot.big{width:68px;height:68px;margin:-34px;background:radial-gradient(circle,rgba(255,255,255,.6),rgba(212,21,127,.45) 55%,rgba(31,95,174,.4));box-shadow:0 0 0 2px rgba(255,255,255,.8),0 0 30px 6px rgba(106,44,145,.5);backdrop-filter:blur(2px)}
@@ -240,7 +238,7 @@ footer .logo2{width:64px;height:64px;float:left;margin-right:14px;mix-blend-mode
  <img class="logo" src="img/logo.jpg" alt="Logo de la línea de investigación: Conflictos Socioterritoriales-Ambientales y Políticas de Planificación Urbana">
  <div><h1>Territorio, Movilidad y Conflictos Socioterritoriales</h1><p>Línea de investigación · Licenciatura en Urbanismo y Desarrollo Metropolitano · UNRC</p></div>
 </div></header>
-<div id="bar"></div><canvas id="trail"></canvas><div id="cur"></div><div id="curdot"></div>
+<div id="bar"></div><canvas id="trail"></canvas><div id="curdot"></div>
 <nav><div class="wrap"><a href="#presentacion">Presentación</a><a href="#ejes">Ejes temáticos</a><a href="#integrantes">Integrantes</a><a href="#proyectos">Proyectos</a><a href="#productos">Productos académicos</a><a href="#datos">Datos y métodos</a><a href="#contacto">Contacto</a></div></nav>
 
 <main class="wrap">
@@ -405,18 +403,18 @@ m.innerHTML=s;
 
 (()=>{if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
 const DK='#dossier,.intro,#integrantes,footer,.top,.card .face,.cover,.fold.open';let dk=false;
-const glow=document.getElementById('cur'),dot=document.getElementById('curdot'),cv=document.getElementById('trail'),cx=cv.getContext('2d');
+const dot=document.getElementById('curdot'),cv=document.getElementById('trail'),cx=cv.getContext('2d');
 let W,H,mx=-100,my=-100,gx=-100,gy=-100,lx=-999,ly=-999;const R=[];
 const rs=()=>{W=cv.width=innerWidth;H=cv.height=innerHeight};rs();addEventListener('resize',rs);
 const ring=(x,y,v,a)=>R.push({x,y,r:4,v,a,m:90+Math.random()*30});
-addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;const t=e.target.closest&&e.target.closest(DK)?true:false;if(t!==dk){dk=t;document.body.classList.toggle('dk',dk)}if(e.pointerType==='touch'){gx=mx;gy=my}
- glow.classList.add('on');dot.classList.add('on');if(Math.hypot(mx-lx,my-ly)>20){lx=mx;ly=my;ring(mx,my,1.9,.55)}});
-document.addEventListener('pointerleave',()=>{glow.classList.remove('on');dot.classList.remove('on')});
-addEventListener('pointerup',e=>{if(e.pointerType==='touch'){glow.classList.remove('on');dot.classList.remove('on')}});
-document.addEventListener('pointerover',e=>{const b=!!e.target.closest('a,button,.card,.fold,.stack,.eje,.stat,.pub');dot.classList.toggle('big',b);glow.classList.toggle('big',b)});
-addEventListener('pointerdown',e=>{dot.classList.add('dn');mx=lx=e.clientX;my=ly=e.clientY;if(e.pointerType==='touch'){gx=mx;gy=my;glow.classList.add('on');dot.classList.add('on')}ring(mx,my,3.4,.8);setTimeout(()=>ring(mx,my,2.6,.6),90);setTimeout(()=>ring(mx,my,2,.45),200)});
+addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;const t=e.target.closest&&e.target.closest(DK)?true:false;if(t!==dk){dk=t;document.body.classList.toggle('dk',dk)}
+ dot.classList.add('on');if(Math.hypot(mx-lx,my-ly)>20){lx=mx;ly=my;ring(mx,my,1.9,.55)}});
+document.addEventListener('pointerleave',()=>{dot.classList.remove('on')});
+addEventListener('pointerup',e=>{if(e.pointerType==='touch'){dot.classList.remove('on')}});
+document.addEventListener('pointerover',e=>{const b=!!e.target.closest('a,button,.card,.fold,.stack,.eje,.stat,.pub');dot.classList.toggle('big',b);});
+addEventListener('pointerdown',e=>{dot.classList.add('dn');mx=lx=e.clientX;my=ly=e.clientY;if(e.pointerType==='touch'){dot.classList.add('on')}ring(mx,my,3.4,.8);setTimeout(()=>ring(mx,my,2.6,.6),90);setTimeout(()=>ring(mx,my,2,.45),200)});
 addEventListener('pointerup',()=>dot.classList.remove('dn'));
-(function f(){gx+=(mx-gx)*.1;gy+=(my-gy)*.1;glow.style.transform=`translate(${gx}px,${gy}px)`;dot.style.transform=`translate(${mx}px,${my}px)`;
+(function f(){dot.style.transform=`translate(${mx}px,${my}px)`;
  cx.clearRect(0,0,W,H);
  for(let i=R.length-1;i>=0;i--){const q=R[i];q.r+=q.v;q.v*=.982;const t=q.r/q.m;if(t>=1||q.v<.15){R.splice(i,1);continue}
   const al=q.a*Math.pow(1-t,1.6);
