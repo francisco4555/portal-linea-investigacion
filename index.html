@@ -16,6 +16,7 @@ a{color:var(--acc)}
 header.inst{border-bottom:3px solid var(--acc);background:#fff}
 header.inst .wrap{display:flex;align-items:center;gap:18px;padding:22px 28px}
 .seal{width:58px;height:58px;border:2px solid var(--acc);border-radius:50%;display:grid;place-items:center;font:700 13px 'Source Serif 4';color:var(--acc);flex:none}
+.logo{width:120px;height:120px;object-fit:contain;flex:none;border-radius:50%;animation:spin 14s linear infinite;transform-style:preserve-3d;filter:drop-shadow(0 6px 8px rgba(42,26,32,.25))}
 .inst h1{font-family:'Source Serif 4';font-size:24px;line-height:1.2}
 .inst p{color:var(--mut);font-size:14px}
 nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
@@ -64,7 +65,6 @@ section{padding:48px 0;border-top:1px solid var(--line)}
 @media(prefers-reduced-motion:reduce){.card{opacity:1;transform:none;transition:none}.card .inner{transition:none}}
 .eje,.box,figure{transition:transform .35s,box-shadow .35s;transform-style:preserve-3d}
 .eje:hover,.box:hover,figure:hover{transform:perspective(900px) translateZ(14px) rotateX(2deg);box-shadow:0 18px 30px -14px rgba(42,26,32,.35)}
-.seal{animation:spin 14s linear infinite;transform-style:preserve-3d}
 @keyframes spin{0%,70%{transform:rotateY(0)}100%{transform:rotateY(360deg)}}
 .rv{opacity:0;transform:translateY(24px);transition:.8s}.rv.in{opacity:1;transform:none}
 .pend{color:#9aa1ad;font-style:italic}
@@ -86,7 +86,7 @@ footer b{color:#fff;display:block;margin-bottom:6px}
 <body>
 <div class="top"><div class="wrap"><span>Universidad Nacional Rosario Castellanos</span><span>Línea de investigación</span></div></div>
 <header class="inst"><div class="wrap">
- <div class="seal" style="border-color:var(--gold)">LUDM</div>
+ <img class="logo" src="img/logo.jpg" alt="Logo de la línea de investigación: Conflictos Socioterritoriales-Ambientales y Políticas de Planificación Urbana">
  <div><h1>Territorio, Movilidad y Conflictos Socioterritoriales</h1><p>Línea de investigación · Licenciatura en Urbanismo y Desarrollo Metropolitano · UNRC</p></div>
 </div></header>
 <nav><div class="wrap"><a href="#presentacion">Presentación</a><a href="#ejes">Ejes temáticos</a><a href="#integrantes">Integrantes</a><a href="#proyectos">Proyectos</a><a href="#productos">Productos académicos</a><a href="#datos">Datos y métodos</a><a href="#contacto">Contacto</a></div></nav>
