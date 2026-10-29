@@ -179,7 +179,7 @@ section>.kick{padding:4px 12px;border-radius:99px;background:var(--brand);color:
 .cols3{counter-reset:e}
 .eje:hover,.box:hover,figure:hover{box-shadow:0 26px 40px -18px rgba(60,20,110,.5)}
 section:nth-of-type(even){position:relative;isolation:isolate}
-#proyectos:before,#datos:before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:50%;width:100vw;margin-left:-50vw;background:linear-gradient(180deg,#f3ecfb,#eaf1fb)}
+#proyectos:before,#recursos:before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:50%;width:100vw;margin-left:-50vw;background:linear-gradient(180deg,#f3ecfb,#eaf1fb)}
 th{color:var(--pu)}
 .badge{border-color:var(--pu);color:var(--pu);border-radius:99px;padding:2px 10px}
 footer{background:linear-gradient(160deg,#1b1230,#2a1257 60%,#14183a);position:relative}
@@ -204,8 +204,8 @@ table{border-radius:12px;overflow:hidden}
 .pub:nth-of-type(1){--c:#d4157f}.pub:nth-of-type(2){--c:#1f5fae}.pub:nth-of-type(3){--c:#3fa34d}
 .pub .meta{width:100%}
 .badge{background:var(--c,var(--m));border-color:var(--c,var(--m));color:#fff}
-#datos .eje{overflow:hidden}
-#datos .eje:after{content:"";position:absolute;right:-30px;bottom:-30px;width:110px;height:110px;border-radius:50%;background:var(--c);opacity:.1}
+#recursos .eje{overflow:hidden}
+#recursos .eje:after{content:"";position:absolute;right:-30px;bottom:-30px;width:110px;height:110px;border-radius:50%;background:var(--c);opacity:.1}
 footer .wrap{padding:44px 28px}footer b{font:600 17px 'Source Serif 4';background:var(--brand);-webkit-background-clip:text;background-clip:text;color:transparent;filter:brightness(1.6)}
 footer .logo2{width:64px;height:64px;float:left;margin-right:14px;mix-blend-mode:normal;border-radius:50%;background:#fff}
 .draft{border-radius:99px;background:#fff;border:1px solid #d6c8f0;color:#5a3d9a;box-shadow:0 8px 18px rgba(60,20,110,.2)}
@@ -230,6 +230,11 @@ footer .logo2{width:64px;height:64px;float:left;margin-right:14px;mix-blend-mode
 .pl small,.pl .no{transform:translate3d(calc(var(--px,0)*5px),0,16px)}
 .pl .st{transform:translate3d(calc(var(--px,0)*12px),calc(var(--py,0)*8px),52px) rotate(-6deg)}
 .pulltip{color:#d6caf2}
+.rec{display:block;text-decoration:none;color:inherit;transition:transform .35s,box-shadow .35s}
+.rec b{display:block;font:600 19px/1.25 'Source Serif 4';margin-bottom:6px;color:var(--ink)}
+.rec p{color:var(--mut);font-size:15px}
+.rec .go{display:inline-block;margin-top:14px;font:600 13px 'Source Sans 3';letter-spacing:.08em;text-transform:uppercase;color:var(--c);transition:transform .3s}
+.rec:hover{transform:perspective(900px) translateZ(18px) rotateX(3deg) rotateY(-3deg)}.rec:hover .go{transform:translateX(6px)}
 </style>
 </head>
 <body>
@@ -239,7 +244,7 @@ footer .logo2{width:64px;height:64px;float:left;margin-right:14px;mix-blend-mode
  <div><h1>Territorio, Movilidad y Conflictos Socioterritoriales</h1><p>Línea de investigación · Licenciatura en Urbanismo y Desarrollo Metropolitano · UNRC</p></div>
 </div></header>
 <div id="bar"></div><canvas id="trail"></canvas><div id="curdot"></div>
-<nav><div class="wrap"><a href="#presentacion">Presentación</a><a href="#ejes">Ejes temáticos</a><a href="#integrantes">Integrantes</a><a href="#proyectos">Proyectos</a><a href="#productos">Productos académicos</a><a href="#datos">Datos y métodos</a><a href="#contacto">Contacto</a></div></nav>
+<nav><div class="wrap"><a href="#presentacion">Presentación</a><a href="#ejes">Ejes temáticos</a><a href="#integrantes">Integrantes</a><a href="#proyectos">Proyectos</a><a href="#productos">Productos académicos</a><a href="#recursos">Recursos</a><a href="#contacto">Contacto</a></div></nav>
 
 <main class="wrap">
 <div class="intro" id="presentacion">
@@ -309,12 +314,14 @@ footer .logo2{width:64px;height:64px;float:left;margin-right:14px;mix-blend-mode
  <div class="pub"><div class="cite"><span class="badge">Tesis</span><span class="pend">[Autor. (Año). Título. Programa, UACM.]</span></div></div>
 </section>
 
-<section id="datos">
- <div class="kick">Datos y métodos</div>
+<section id="recursos">
+ <div class="kick">Recursos y enlaces</div>
  <div class="cols3">
-  <div class="eje"><b>Bases de datos</b><p>Datos SEMOVI depurados, con diccionario de variables y notas de procesamiento.</p></div>
-  <div class="eje"><b>Código reproducible</b><p>Scripts y cuadernos del análisis espacial, publicados en un repositorio abierto.</p></div>
-  <div class="eje"><b>Notas metodológicas</b><p>Documentación de decisiones, limitaciones y criterios de selección.</p></div>
+  <a class="eje rec" href="https://francisco4555.github.io/Tu-Repositorio/" target="_blank" rel="noopener"><b>Repositorio</b><p>Repositorio de la línea: documentos, datos y productos académicos.</p><span class="go">Abrir ↗</span></a>
+  <a class="eje rec" href="https://francisco4555.github.io/Cartograf-a-y-Territorio/" target="_blank" rel="noopener"><b>Concurso de Cartografía Temática</b><p>Mapas sobre el Día de Muertos: bases, fechas y registro.</p><span class="go">Abrir ↗</span></a>
+  <a class="eje rec" href="https://francisco4555.github.io/Titulacion-LUDM-V1/" target="_blank" rel="noopener"><b>Titulación LUDM</b><p>Información y seguimiento de las opciones de titulación.</p><span class="go">Abrir ↗</span></a>
+  <a class="eje rec" href="https://francisco4555.github.io/biblioteca-espacial/" target="_blank" rel="noopener"><b>Biblioteca</b><p>Biblioteca de consulta para estudios urbanos y análisis espacial.</p><span class="go">Abrir ↗</span></a>
+  <a class="eje rec" href="https://francisco4555.github.io/encuentro-tesistas/" target="_blank" rel="noopener"><b>II Encuentro de Tesistas</b><p>Segundo encuentro de estudiantes tesistas de la LUDM.</p><span class="go">Abrir ↗</span></a>
  </div>
 </section>
 </main>
