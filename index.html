@@ -67,7 +67,7 @@ section{padding:48px 0;border-top:1px solid var(--line)}
 .book{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:470px;transform-style:preserve-3d;transform:rotateX(7deg);transform-origin:top;filter:drop-shadow(0 34px 34px rgba(0,0,0,.55));animation:rise .9s cubic-bezier(.2,.8,.2,1)}
 @keyframes rise{from{opacity:0;transform:rotateX(40deg) translateY(40px)}to{opacity:1}}
 .pl{background:#f6f0e6;border-radius:10px 0 0 10px;padding:30px 28px;border:1px solid #d8cdb8;border-right:0;background-image:linear-gradient(90deg,transparent 92%,rgba(0,0,0,.08))}
-.pl img{width:100%;max-width:230px;aspect-ratio:4/5;object-fit:cover;object-position:center 25%;border:6px solid #fff;box-shadow:0 8px 18px rgba(0,0,0,.3);transform:rotate(-2.5deg)}
+.stack{position:relative;width:min(230px,70%);aspect-ratio:4/5;cursor:pointer;margin-bottom:34px}.stack img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;border:6px solid #fff;box-shadow:0 8px 18px rgba(0,0,0,.3);transition:transform .7s cubic-bezier(.2,1.1,.3,1),opacity .5s}
 .pl .no{font:12px ui-monospace,Menlo,monospace;color:#8a6d2b;letter-spacing:.12em;margin-bottom:10px}
 .pl h3{margin:14px 0 2px}.pl small{color:var(--mut)}
 .pl .st{display:inline-block;margin-top:14px;border:2px solid var(--acc);color:var(--acc);padding:2px 10px;font:700 12px 'Source Sans 3';letter-spacing:.16em;transform:rotate(-6deg);opacity:.85}
@@ -118,6 +118,15 @@ section{padding:48px 0;border-top:1px solid var(--line)}
 .fold:hover .fbtn{transform:scale(1.08)}.fold.open .fbtn{transform:rotate(45deg);background:linear-gradient(#fff,#e6e0e6);color:#111}
 .fold:focus-visible{outline:2px solid var(--gold);outline-offset:6px;border-radius:22px}
 #integrantes:before{background:radial-gradient(rgba(255,255,255,.07) 1.2px,transparent 1.4px) 0 0/22px 22px,radial-gradient(900px 420px at 15% 0,rgba(168,137,63,.28),transparent 60%),radial-gradient(800px 500px at 90% 100%,rgba(190,50,90,.35),transparent 60%),linear-gradient(180deg,#2a1a20,#1a0f14)}
+.eq-sub2{color:var(--mut);max-width:640px;margin-bottom:6px}
+.ig{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px;margin-top:26px;perspective:1200px}
+.igc{position:relative;display:flex;flex-direction:column;justify-content:flex-end;aspect-ratio:4/5;padding:18px;border-radius:18px;color:#fff;text-decoration:none;overflow:hidden;transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s;box-shadow:0 14px 28px -14px rgba(42,26,32,.5)}
+.igc.hov{transition:transform .08s linear;box-shadow:0 30px 40px -16px rgba(42,26,32,.6)}
+.igc:before{content:"";position:absolute;inset:0;background:var(--g);z-index:-2}
+.igc:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,30%),rgba(255,255,255,.38),transparent 55%);z-index:-1}
+.igc .tp{position:absolute;top:14px;left:16px;font:600 11px ui-monospace,Menlo,monospace;letter-spacing:.12em;background:rgba(0,0,0,.35);padding:3px 9px;border-radius:99px;transform:translateZ(30px)}
+.igc .pl2{position:absolute;top:44%;left:50%;width:62px;height:62px;margin:-31px;border-radius:50%;background:rgba(255,255,255,.22);backdrop-filter:blur(6px);display:grid;place-items:center;font-size:24px;transform:translateZ(50px)}
+.igc b{font:600 18px/1.25 'Source Serif 4';transform:translateZ(36px)}.igc small{opacity:.85;font:12px ui-monospace,Menlo,monospace;transform:translateZ(24px);margin-top:4px}
 .hint{color:#b7a7a3;text-align:center;margin-top:26px}
 .slot{transition:transform .4s}.slot:hover{transform:translateY(-4px)}
 .intro{position:relative}
@@ -127,7 +136,8 @@ section{padding:48px 0;border-top:1px solid var(--line)}
 #bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--acc));z-index:50}
 nav a{position:relative}nav a:after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:100%;background:var(--acc);transform:scaleX(0);transition:.3s}nav a:hover:after,nav a.on:after{transform:scaleX(1)}nav a.on{color:var(--acc)}
 .hint{font-size:13px;color:var(--mut);margin-top:6px}
-@media(prefers-reduced-motion:reduce){.book,.cover{animation:none}.cover{display:none}.pg{transition:none}.eje,.box,figure{transition:transform .35s,box-shadow .35s;transform-style:preserve-3d}
+@media(prefers-reduced-motion:reduce){.card{opacity:1;transform:none;transition:none}.card .inner{transition:none}.book,.cover{animation:none}.cover{display:none}.pg{transition:none}.fold *{transition:none!important}.igc{transition:none}}
+.eje,.box,figure{transition:transform .35s,box-shadow .35s;transform-style:preserve-3d}
 .eje:hover,.box:hover,figure:hover{transform:perspective(900px) translateZ(14px) rotateX(2deg);box-shadow:0 18px 30px -14px rgba(42,26,32,.35)}
 @keyframes spin{0%,70%{transform:rotateY(0)}100%{transform:rotateY(360deg)}}
 .rv{opacity:0;transform:translateY(24px);transition:.8s}.rv.in{opacity:1;transform:none}
@@ -154,7 +164,7 @@ footer b{color:#fff;display:block;margin-bottom:6px}
  <div><h1>Territorio, Movilidad y Conflictos Socioterritoriales</h1><p>Línea de investigación · Licenciatura en Urbanismo y Desarrollo Metropolitano · UNRC</p></div>
 </div></header>
 <div id="bar"></div>
-<nav><div class="wrap"><a href="#presentacion">Presentación</a><a href="#ejes">Ejes temáticos</a><a href="#integrantes">Integrantes</a><a href="#proyectos">Proyectos</a><a href="#productos">Productos académicos</a><a href="#datos">Datos y métodos</a><a href="#contacto">Contacto</a></div></nav>
+<nav><div class="wrap"><a href="#presentacion">Presentación</a><a href="#ejes">Ejes temáticos</a><a href="#integrantes">Integrantes</a><a href="#proyectos">Proyectos</a><a href="#instagram">Instagram</a><a href="#productos">Productos académicos</a><a href="#datos">Datos y métodos</a><a href="#contacto">Contacto</a></div></nav>
 
 <main class="wrap">
 <div class="intro" id="presentacion">
@@ -214,6 +224,14 @@ footer b{color:#fff;display:block;margin-bottom:6px}
  </div>
 </section>
 
+
+<section id="instagram">
+ <div class="kick">En Instagram</div>
+ <h3>La línea en reels y publicaciones</h3>
+ <p class="eq-sub2">Divulgación, convocatorias y cartografía desde <a href="https://www.instagram.com/fr1294577/" target="_blank" rel="noopener">@fr1294577</a>. Haz clic en una tarjeta para abrirla en Instagram.</p>
+ <div class="ig" id="ig"></div>
+</section>
+
 <section id="productos">
  <div class="kick">Productos académicos</div>
  <div class="pub"><div class="cite"><span class="badge">Artículo</span>Romero Díaz, J. F., <span class="pend">[coautores]</span> (en preparación). Siniestralidad motociclista en tres alcaldías de la Ciudad de México, 2023.</div><div class="meta">Manuscrito · revista por definir</div></div>
@@ -260,11 +278,14 @@ P.querySelectorAll('.fold').forEach(b=>b.addEventListener('click',()=>{
  const i=ppl.findIndex(x=>x[3]===b.dataset.k),[g,n,r,f]=ppl[i];b.classList.add('open');b.setAttribute('aria-expanded','true');
  const L=r.split(' · '),V=(INV[f]||['<span class="pend">[por completar]</span>']);
  D.innerHTML=`<div class="book"><div class="cover"><div>EXPEDIENTE<small>LUDM-0${i+1}</small></div></div>
-<div class="pl"><div class="no">EXP. LUDM-0${i+1} · UNRC</div><img src="img/${f}.jpg" alt="${g} ${n}"><h3>${g} ${n}</h3><small>Docente · Licenciatura en Urbanismo y Desarrollo Metropolitano</small><div><span class="st">ACTIVO</span></div></div>
+<div class="pl"><div class="no">EXP. LUDM-0${i+1} · UNRC</div><div class="stack" title="Clic para ver más fotos"><img src="img/${f}.jpg" alt="${g} ${n}"></div><h3>${g} ${n}</h3><small>Docente · Licenciatura en Urbanismo y Desarrollo Metropolitano</small><div><span class="st">ACTIVO</span></div></div>
 <div class="pr"><div class="tabs"></div><button class="bx" aria-label="Cerrar">×</button>
 <div class="pg"><h5>Semblanza</h5><p class="pend">[semblanza por completar]</p></div>
 <div class="pg"><h5>Líneas de investigación</h5><ul>${L.map(x=>`<li>${x}</li>`).join('')}</ul></div>
 <div class="pg"><h5>Investigaciones y productos</h5><ul>${V.map(x=>`<li>${x}</li>`).join('')}</ul></div></div></div>`;
+ const stk=D.querySelector('.stack');let cur=0;const lay=()=>{const im=[...stk.children],n=im.length;im.forEach((e,j)=>{const d=(j-cur+n)%n;e.style.transform=`translate(${d*34}px,${-d*10}px) rotate(${-2.5+d*6}deg) scale(${1-d*.04})`;e.style.zIndex=n-d;e.style.opacity=d>3?0:1})};
+ lay();stk.onclick=()=>{cur=(cur+1)%stk.children.length;lay()};
+ for(let k=2;k<=6;k++){const im=new Image();im.alt=n;im.onload=()=>{stk.appendChild(im);lay()};im.src=`img/${f}-${k}.jpg`}
  const pg=[...D.querySelectorAll('.pg')],tb=D.querySelector('.tabs');
  const go=k=>{pg.forEach((e,j)=>{e.classList.toggle('t',j<k);e.style.zIndex=j<k?j:10-j});[...tb.children].forEach((t,j)=>t.classList.toggle('on',j===k))};
  ['Semblanza','Líneas','Investigaciones'].forEach((t,k)=>{const x=document.createElement('button');x.textContent=t;x.onclick=()=>go(k);tb.appendChild(x)});go(0);
@@ -284,6 +305,13 @@ P.querySelectorAll('.card').forEach(c=>{
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 P.querySelectorAll('.card').forEach(c=>io.observe(c));
 document.querySelectorAll('section>.kick,.eje,.pub,.proj').forEach(el=>{el.classList.add('rv');io.observe(el)});
+const IG=[["reel","DcGmUK8xto4","Reel","ago 2026"],["reel","DVm4jujtMTU","Reel","mar 2026"],["reel","DU2Cl_ODem4","Reel","feb 2026"],["p","DfD5K8pDbcP","Concurso de Cartografía Temática: Día de Muertos","oct 2026"],["p","Dd1H3zkR_Oo","Publicación","sep 2026"],["p","DcDBjVhtsSb","Publicación","ago 2026"]];
+const GR=["linear-gradient(150deg,#6b1830,#b0305a 60%,#a8893f)","linear-gradient(150deg,#1f3b5a,#4c6fa8 55%,#a8893f)","linear-gradient(150deg,#1f5a46,#5c9a6c 55%,#2a1a20)","linear-gradient(150deg,#e07a1f,#8a2340 60%,#2a1a20)","linear-gradient(150deg,#4a2a6b,#b0305a 70%,#e07a1f)","linear-gradient(150deg,#2a1a20,#6b1830 60%,#a8893f)"];
+const igEl=document.getElementById('ig');
+igEl.innerHTML=IG.map(([t,id,ti,d],i)=>`<a class="igc" style="--g:${GR[i]}" href="https://www.instagram.com/${t==='reel'?'reel':'p'}/${id}/" target="_blank" rel="noopener"><span class="tp">${t==='reel'?'REEL':'POST'}</span>${t==='reel'?'<span class="pl2">▶</span>':''}<b>${ti}</b><small>${d}</small></a>`).join('');
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches)igEl.querySelectorAll('.igc').forEach(c=>{
+ c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.classList.add('hov');c.style.setProperty('--ry',(x-.5)*22+'deg');c.style.setProperty('--rx',(.5-y)*22+'deg');c.style.setProperty('--mx',x*100+'%');c.style.setProperty('--my',y*100+'%')});
+ c.addEventListener('pointerleave',()=>{c.classList.remove('hov');c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')})});
 const m=document.getElementById('map');let s='<rect width="400" height="300" fill="#f6f5f1"/>';
 const z=[["Gustavo A. Madero",205,70,"M150 30 L265 25 L280 105 L190 120 L140 90Z"],["Cuauhtémoc",175,160,"M140 125 L215 122 L222 195 L150 200Z"],["Iztapalapa",290,230,"M225 185 L360 180 L375 270 L250 285 L215 240Z"]];
 z.forEach(([n,x,y,d])=>{s+=`<path d="${d}" fill="#fff" stroke="#9aa1ad"/>`;for(let k=0;k<45;k++){const a=Math.random()*6.28,r=Math.random()**1.7*35;s+=`<circle cx="${x+Math.cos(a)*r}" cy="${y+Math.sin(a)*r}" r="1.8" fill="#7a1f2b" opacity=".6"/>`}s+=`<text x="${x}" y="${y-40}" font-family="Source Sans 3" font-size="11" fill="#1d2433" text-anchor="middle">${n}</text>`});
