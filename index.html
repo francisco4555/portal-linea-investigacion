@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portal Línea de Investigación — Boceto</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2a1a20;--mut:#5f5a5c;--line:#e3dcd8;--bg:#faf8f5;--acc:#6b1830;--gold:#a8893f;--soft:#f3eee7}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:16.5px;line-height:1.6}
+a{color:var(--acc)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+.top{background:var(--acc);color:#f3e9e3;font-size:13px}
+.top .wrap{display:flex;justify-content:space-between;padding:8px 28px}
+header.inst{border-bottom:3px solid var(--acc);background:#fff}
+header.inst .wrap{display:flex;align-items:center;gap:18px;padding:22px 28px}
+.seal{width:58px;height:58px;border:2px solid var(--acc);border-radius:50%;display:grid;place-items:center;font:700 13px 'Source Serif 4';color:var(--acc);flex:none}
+.inst h1{font-family:'Source Serif 4';font-size:24px;line-height:1.2}
+.inst p{color:var(--mut);font-size:14px}
+nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+nav .wrap{display:flex;gap:26px;overflow-x:auto;padding:12px 28px;font-size:15px;font-weight:600}
+nav a{color:var(--ink);text-decoration:none;white-space:nowrap}nav a:hover{color:var(--acc)}
+.intro{padding:56px 0 40px;display:grid;grid-template-columns:1.6fr 1fr;gap:48px}
+@media(max-width:800px){.intro{grid-template-columns:1fr}}
+.kick{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);font-weight:600}
+h2{font-family:'Source Serif 4';font-size:34px;line-height:1.2;margin:10px 0 18px;font-weight:600}
+h3{font-family:'Source Serif 4';font-size:22px;margin-bottom:10px;font-weight:600}
+.box{background:#fff;border:1px solid var(--line);padding:22px}
+.box dt{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin-top:12px}
+.box dt:first-child{margin-top:0}.box dd{font-weight:600}
+section{padding:48px 0;border-top:1px solid var(--line)}
+.cols3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:22px}
+.eje{border-left:3px solid var(--acc);padding:4px 0 4px 18px}
+.eje b{font-family:'Source Serif 4';font-size:19px;display:block;margin-bottom:4px}
+.eje p{color:var(--mut);font-size:15px}
+.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px;margin-top:22px}
+.p{background:#fff;border:1px solid var(--line);padding:0 0 18px;text-align:left;border-bottom:3px solid var(--acc)}.p>*:not(img){padding:0 16px}
+.ph{width:100%;aspect-ratio:1;object-fit:cover;object-position:center 30%;display:block;margin-bottom:14px;filter:grayscale(1);transition:.4s}.p:hover .ph{filter:none}.p .gr{display:inline-block;font-size:11.5px;font-weight:600;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.p b{font-family:'Source Serif 4';font-size:18px;display:block}
+.p small{color:var(--mut);display:block;font-size:13.5px}
+.p .links{margin-top:10px;font-size:13px;display:flex;gap:10px;justify-content:center}
+.pend{color:#9aa1ad;font-style:italic}
+.proj{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:22px;align-items:start}
+@media(max-width:800px){.proj{grid-template-columns:1fr}}
+figure{background:#fff;border:1px solid var(--line);padding:14px}
+figcaption{font-size:13px;color:var(--mut);margin-top:8px}
+table{width:100%;border-collapse:collapse;font-size:15px;margin-top:14px}
+td,th{border-bottom:1px solid var(--line);padding:8px 4px;text-align:left}th{font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut)}
+.pub{padding:16px 0;border-bottom:1px solid var(--line)}
+.pub .cite{font-size:15.5px}.pub .meta{font-size:13px;color:var(--mut);margin-top:4px}
+.badge{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 8px;border:1px solid var(--acc);color:var(--acc);margin-right:6px}
+footer{background:#2a1a20;color:#c9cdd5;font-size:14px;margin-top:40px}
+footer .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;padding:36px 28px}
+footer b{color:#fff;display:block;margin-bottom:6px}
+.draft{position:fixed;bottom:12px;right:12px;background:#fff3cd;border:1px solid #e0c56e;font-size:12px;padding:6px 10px}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap"><span>Universidad Nacional Rosario Castellanos</span><span>Línea de investigación</span></div></div>
+<header class="inst"><div class="wrap">
+ <div class="seal" style="border-color:var(--gold)">LUDM</div>
+ <div><h1>Territorio, Movilidad y Conflictos Socioterritoriales</h1><p>Línea de investigación · Licenciatura en Urbanismo y Desarrollo Metropolitano · UNRC</p></div>
+</div></header>
+<nav><div class="wrap"><a href="#presentacion">Presentación</a><a href="#ejes">Ejes temáticos</a><a href="#integrantes">Integrantes</a><a href="#proyectos">Proyectos</a><a href="#productos">Productos académicos</a><a href="#datos">Datos y métodos</a><a href="#contacto">Contacto</a></div></nav>
+
+<main class="wrap">
+<div class="intro" id="presentacion">
+ <div>
+  <div class="kick">Presentación</div>
+  <h2>Estudios urbanos y metropolitanos desde la planeación, el análisis espacial y las ciencias sociales</h2>
+  <p>La línea reúne a cinco docentes de la LUDM que analizan cómo se produce, se disputa y se transforma el territorio urbano y periurbano de la Zona Metropolitana del Valle de México. Combinamos planeación territorial, Sistemas de Información Geográfica, modelación urbana y enfoques antropológicos y sociológicos para estudiar la movilidad, la violencia, el patrimonio y los conflictos socioterritoriales.</p>
+  <p style="margin-top:12px"><b>Objetivo general:</b> <span class="pend">[redactar objetivo de la línea]</span></p>
+ </div>
+ <dl class="box">
+  <dt>Adscripción</dt><dd>UNRC · Licenciatura en Urbanismo y Desarrollo Metropolitano</dd>
+  <dt>Integrantes</dt><dd>3 doctores · 2 maestros</dd>
+  <dt>Área</dt><dd>Urbanismo y estudios territoriales</dd>
+  <dt>Escala de estudio</dt><dd>CDMX y Zona Metropolitana del Valle de México</dd>
+  <dt>Enfoque</dt><dd>Interdisciplinario: SIG, planeación y ciencias sociales</dd>
+ </dl>
+</div>
+
+<section id="ejes">
+ <div class="kick">Ejes temáticos</div>
+ <div class="cols3">
+  <div class="eje"><b>Movilidad y transporte</b><p>Motorización, siniestralidad vial y accesibilidad; modelación urbana y análisis espacial con SIG.</p></div>
+  <div class="eje"><b>Planeación y violencia territorial</b><p>Planeación territorial, geografía de la violencia y uso de SIG para la toma de decisiones.</p></div>
+  <div class="eje"><b>Conflictos socioterritoriales</b><p>Disputas por el suelo, territorios urbanos y periurbanos, actores y procesos de planificación.</p></div>
+  <div class="eje"><b>Patrimonio urbano y cultural</b><p>Centros históricos, patrimonio y transformación urbana.</p></div>
+  <div class="eje"><b>Sociedad, ambiente y sistemas urbano-rurales</b><p>Antropología política, sociología urbana y complejidad ambiental.</p></div>
+ </div>
+</section>
+
+<section id="integrantes">
+ <div class="kick">Integrantes</div>
+ <div class="people" id="people"></div>
+</section>
+
+<section id="proyectos">
+ <div class="kick">Proyectos en curso</div>
+ <h3>Siniestralidad motociclista en la Ciudad de México, 2023: análisis espacial en tres alcaldías</h3>
+ <div class="proj">
+  <div>
+   <p>Estudio de los incidentes viales georreferenciados por SEMOVI en las alcaldías con mayor accidentabilidad. Se identifican concentraciones espaciales (puntos calientes) y se relacionan con características del territorio.</p>
+   <table>
+    <tr><th>Elemento</th><th>Descripción</th></tr>
+    <tr><td>Área de estudio</td><td>Iztapalapa, Cuauhtémoc, Gustavo A. Madero</td></tr>
+    <tr><td>Fuente</td><td>SEMOVI — incidentes viales georreferenciados</td></tr>
+    <tr><td>Método</td><td class="pend">[p. ej. densidad de Kernel, Getis-Ord Gi*]</td></tr>
+    <tr><td>Estado</td><td>Manuscrito en preparación</td></tr>
+    <tr><td>Revista objetivo</td><td>Revista Q1 de movilidad y territorio</td></tr>
+   </table>
+  </div>
+  <figure>
+   <svg id="map" viewBox="0 0 400 300" width="100%"></svg>
+   <figcaption>Figura 1. Esquema ilustrativo de concentración de incidentes por alcaldía. En la versión final se sustituye por el mapa con datos reales.</figcaption>
+  </figure>
+ </div>
+</section>
+
+<section id="productos">
+ <div class="kick">Productos académicos</div>
+ <div class="pub"><div class="cite"><span class="badge">Artículo</span>Romero Díaz, J. F., <span class="pend">[coautores]</span> (en preparación). Siniestralidad motociclista en tres alcaldías de la Ciudad de México, 2023.</div><div class="meta">Manuscrito · revista por definir</div></div>
+ <div class="pub"><div class="cite"><span class="badge">Ponencia</span><span class="pend">[Autor(es). (Año). Título. Congreso, sede.]</span></div></div>
+ <div class="pub"><div class="cite"><span class="badge">Tesis</span><span class="pend">[Autor. (Año). Título. Programa, UACM.]</span></div></div>
+</section>
+
+<section id="datos">
+ <div class="kick">Datos y métodos</div>
+ <div class="cols3">
+  <div class="eje"><b>Bases de datos</b><p>Datos SEMOVI depurados, con diccionario de variables y notas de procesamiento.</p></div>
+  <div class="eje"><b>Código reproducible</b><p>Scripts y cuadernos del análisis espacial, publicados en un repositorio abierto.</p></div>
+  <div class="eje"><b>Notas metodológicas</b><p>Documentación de decisiones, limitaciones y criterios de selección.</p></div>
+ </div>
+</section>
+</main>
+
+<footer id="contacto"><div class="wrap">
+ <div><b>Territorio, Movilidad y Conflictos Socioterritoriales</b>LUDM · Universidad Nacional Rosario Castellanos</div>
+ <div><b>Contacto</b><span class="pend" style="color:#9aa1ad">[correo institucional]</span></div>
+ <div><b>Sede</b><span style="color:#9aa1ad;font-style:italic">[plantel]</span>, Ciudad de México</div>
+</div></footer>
+<div class="draft">Boceto · los textos entre [ ] están por completar</div>
+
+<script>
+const ppl=[
+["Dr.","Israel Sandre Osorio","Antropología política y sociología urbana · Complejidad ambiental · Sistemas urbanos y rurales","sandre"],
+["Dr.","Ernesto García López","Planeación territorial · Sistemas de Información Geográfica · Violencia y territorio","ernesto"],
+["Dr.","José Gustavo Casas Álvarez","Territorios urbanos y periurbanos · Conflictos socioterritoriales · Planificación urbana","gustavo"],
+["Mtro.","Edgar Humberto Castro López","Patrimonio urbano y cultural · Planificación urbana · Conflictos socioterritoriales","edgar"],
+["Mtro.","José Francisco Romero Díaz","Movilidad y transporte · Sistemas de Información Geográfica · Modelación urbana","francisco"]];
+document.getElementById('people').innerHTML=ppl.map(([g,n,r,f])=>`<div class="p"><img class="ph" src="img/${f}.jpg" alt="${g} ${n}"><span class="gr">${g} · Docente LUDM</span><b>${n}</b><small>${r}</small><div class="links" style="justify-content:flex-start"><a href="#integrantes">ORCID</a><a href="#integrantes">Google Académico</a></div></div>`).join('');
+const m=document.getElementById('map');let s='<rect width="400" height="300" fill="#f6f5f1"/>';
+const z=[["Gustavo A. Madero",205,70,"M150 30 L265 25 L280 105 L190 120 L140 90Z"],["Cuauhtémoc",175,160,"M140 125 L215 122 L222 195 L150 200Z"],["Iztapalapa",290,230,"M225 185 L360 180 L375 270 L250 285 L215 240Z"]];
+z.forEach(([n,x,y,d])=>{s+=`<path d="${d}" fill="#fff" stroke="#9aa1ad"/>`;for(let k=0;k<45;k++){const a=Math.random()*6.28,r=Math.random()**1.7*35;s+=`<circle cx="${x+Math.cos(a)*r}" cy="${y+Math.sin(a)*r}" r="1.8" fill="#7a1f2b" opacity=".6"/>`}s+=`<text x="${x}" y="${y-40}" font-family="Source Sans 3" font-size="11" fill="#1d2433" text-anchor="middle">${n}</text>`});
+s+='<text x="12" y="290" font-size="10" fill="#5b6474" font-family="Source Sans 3">N ↑ · Esquema sin escala</text>';
+m.innerHTML=s;
+</script>
+</body>
+</html>
