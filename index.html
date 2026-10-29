@@ -208,15 +208,14 @@ footer .wrap{padding:44px 28px}footer b{font:600 17px 'Source Serif 4';backgroun
 footer .logo2{width:64px;height:64px;float:left;margin-right:14px;mix-blend-mode:normal;border-radius:50%;background:#fff}
 .draft{border-radius:99px;background:#fff;border:1px solid #d6c8f0;color:#5a3d9a;box-shadow:0 8px 18px rgba(60,20,110,.2)}
 
-#cur{position:fixed;left:0;top:0;width:620px;height:620px;margin:-310px;border-radius:50%;pointer-events:none;z-index:9997;background:radial-gradient(circle,rgba(212,21,127,.2),rgba(106,44,145,.13) 35%,rgba(31,95,174,.08) 55%,transparent 70%);opacity:0;transition:opacity .4s,width .4s,height .4s,margin .4s}
+#cur{position:fixed;left:0;top:0;width:620px;height:620px;margin:-310px;border-radius:50%;pointer-events:none;z-index:9997;background:radial-gradient(circle,rgba(236,110,200,.34),rgba(150,90,220,.2) 38%,rgba(90,130,230,.1) 58%,transparent 72%);opacity:0;transition:opacity .4s,width .4s,height .4s,margin .4s}
 #cur.on{opacity:1}#cur.big{width:760px;height:760px;margin:-380px}
-#curdot{position:fixed;left:0;top:0;width:18px;height:18px;margin:-9px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 2px rgba(255,255,255,.9),0 0 18px 5px rgba(212,21,127,.6);pointer-events:none;z-index:10000;opacity:0;transition:width .25s,height .25s,margin .25s,opacity .3s,background .25s}
+#curdot{position:fixed;left:0;top:0;width:18px;height:18px;margin:-9px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 2px #fff,0 0 0 3.5px rgba(60,20,110,.3),0 0 22px 7px rgba(255,120,210,.7);pointer-events:none;z-index:10000;opacity:0;transition:width .25s,height .25s,margin .25s,opacity .3s,background .25s}
 #curdot.on{opacity:1}
 #curdot.big{width:68px;height:68px;margin:-34px;background:radial-gradient(circle,rgba(255,255,255,.6),rgba(212,21,127,.45) 55%,rgba(31,95,174,.4));box-shadow:0 0 0 2px rgba(255,255,255,.8),0 0 30px 6px rgba(106,44,145,.5);backdrop-filter:blur(2px)}
 #curdot.dn{width:11px;height:11px;margin:-5.5px}
 #trail{position:fixed;inset:0;pointer-events:none;z-index:9998}
-body.dk #cur{background:radial-gradient(circle,rgba(255,150,220,.3),rgba(140,170,255,.18) 38%,rgba(120,255,220,.08) 58%,transparent 72%);mix-blend-mode:screen}
-body.dk #curdot{box-shadow:0 0 0 2px rgba(255,255,255,.95),0 0 22px 7px rgba(255,120,210,.75)}
+@media(max-width:600px){header.inst .wrap{gap:12px;padding:16px 18px}.logo{width:84px;height:84px}.inst h1{font-size:20px;overflow-wrap:anywhere}.inst p{font-size:12.5px}.top .wrap{padding:6px 18px;font-size:11.5px}.wrap{padding-left:18px;padding-right:18px}.intro h2{font-size:30px}.draft{font-size:10.5px;padding:3px 9px;bottom:8px;right:8px}.tabs{top:-30px}.tabs button{padding:6px 9px;font-size:11.5px}.eq-title{font-size:28px}}
 </style>
 </head>
 <body>
@@ -379,7 +378,7 @@ addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;const t=e.target.cl
 document.addEventListener('pointerleave',()=>{glow.classList.remove('on');dot.classList.remove('on')});
 addEventListener('pointerup',e=>{if(e.pointerType==='touch'){glow.classList.remove('on');dot.classList.remove('on')}});
 document.addEventListener('pointerover',e=>{const b=!!e.target.closest('a,button,.card,.fold,.stack,.eje,.stat,.pub');dot.classList.toggle('big',b);glow.classList.toggle('big',b)});
-addEventListener('pointerdown',()=>dot.classList.add('dn'));addEventListener('pointerup',()=>dot.classList.remove('dn'));
+addEventListener('pointerdown',e=>{dot.classList.add('dn');pt=[];if(e.pointerType==='touch'){mx=gx=e.clientX;my=gy=e.clientY;glow.classList.add('on');dot.classList.add('on');for(let i=0;i<16;i++){const a=i/16*6.283;S.push({x:mx,y:my,vx:Math.cos(a)*3,vy:Math.sin(a)*3,l:1,c:COL[i%5],r:4})}}});addEventListener('pointerup',()=>dot.classList.remove('dn'));
 (function f(){gx+=(mx-gx)*.1;gy+=(my-gy)*.1;glow.style.transform=`translate(${gx}px,${gy}px)`;dot.style.transform=`translate(${mx}px,${my}px)`;
  pt.push({x:mx,y:my});if(pt.length>30)pt.shift();
  cx.clearRect(0,0,W,H);cx.lineCap='round';
