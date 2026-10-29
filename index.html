@@ -207,6 +207,15 @@ table{border-radius:12px;overflow:hidden}
 footer .wrap{padding:44px 28px}footer b{font:600 17px 'Source Serif 4';background:var(--brand);-webkit-background-clip:text;background-clip:text;color:transparent;filter:brightness(1.6)}
 footer .logo2{width:64px;height:64px;float:left;margin-right:14px;mix-blend-mode:normal;border-radius:50%;background:#fff}
 .draft{border-radius:99px;background:#fff;border:1px solid #d6c8f0;color:#5a3d9a;box-shadow:0 8px 18px rgba(60,20,110,.2)}
+
+#cur{position:fixed;left:0;top:0;width:38px;height:38px;margin:-19px;border-radius:50%;pointer-events:none;z-index:9999;border:2px solid rgba(212,21,127,.7);background:radial-gradient(circle,rgba(106,44,145,.18),transparent 70%);box-shadow:0 0 0 1px rgba(255,255,255,.55),0 0 16px rgba(212,21,127,.5);transition:width .25s,height .25s,margin .25s,border-color .25s,background .25s;opacity:0}
+#cur.on{opacity:1}
+#cur.big{width:70px;height:70px;margin:-35px;border-color:rgba(31,95,174,.8);background:radial-gradient(circle,rgba(63,163,77,.25),transparent 70%)}
+#cur.dn{width:24px;height:24px;margin:-12px;border-color:#3fa34d}
+#curdot{position:fixed;left:0;top:0;width:8px;height:8px;margin:-4px;border-radius:50%;background:var(--brand);pointer-events:none;z-index:10000;opacity:0}
+#curdot.on{opacity:1}
+#trail{position:fixed;inset:0;pointer-events:none;z-index:9998}
+@media(pointer:coarse){#cur,#curdot,#trail{display:none}}
 </style>
 </head>
 <body>
@@ -215,7 +224,7 @@ footer .logo2{width:64px;height:64px;float:left;margin-right:14px;mix-blend-mode
  <img class="logo" src="img/logo.jpg" alt="Logo de la línea de investigación: Conflictos Socioterritoriales-Ambientales y Políticas de Planificación Urbana">
  <div><h1>Territorio, Movilidad y Conflictos Socioterritoriales</h1><p>Línea de investigación · Licenciatura en Urbanismo y Desarrollo Metropolitano · UNRC</p></div>
 </div></header>
-<div id="bar"></div>
+<div id="bar"></div><canvas id="trail"></canvas><div id="cur"></div><div id="curdot"></div>
 <nav><div class="wrap"><a href="#presentacion">Presentación</a><a href="#ejes">Ejes temáticos</a><a href="#integrantes">Integrantes</a><a href="#proyectos">Proyectos</a><a href="#productos">Productos académicos</a><a href="#datos">Datos y métodos</a><a href="#contacto">Contacto</a></div></nav>
 
 <main class="wrap">
@@ -358,6 +367,20 @@ const z=[["Gustavo A. Madero",205,70,"M150 30 L265 25 L280 105 L190 120 L140 90Z
 z.forEach(([n,x,y,d])=>{s+=`<path d="${d}" fill="url(#zn)" stroke="#6a2c91" stroke-width="1.2"/>`;for(let k=0;k<45;k++){const a=Math.random()*6.28,r=Math.random()**1.7*35;s+=`<circle cx="${x+Math.cos(a)*r}" cy="${y+Math.sin(a)*r}" r="2" fill="#d4157f" opacity=".7" filter="url(#gl)"/>`}s+=`<text x="${x}" y="${y-40}" font-family="Source Sans 3" font-size="11" fill="#2b1558" font-weight="600" text-anchor="middle">${n}</text>`});
 s+='<text x="12" y="290" font-size="10" fill="#5b6474" font-family="Source Sans 3">N ↑ · Esquema sin escala</text>';
 m.innerHTML=s;
+
+(()=>{if(matchMedia('(pointer:coarse)').matches||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+const cur=document.getElementById('cur'),dot=document.getElementById('curdot'),cv=document.getElementById('trail'),cx=cv.getContext('2d');
+let W,H,mx=-100,my=-100,rx=-100,ry=-100,last=0;const P=[],COL=['#d4157f','#6a2c91','#1f5fae','#17a2b8','#3fa34d'];
+const rs=()=>{W=cv.width=innerWidth;H=cv.height=innerHeight};rs();addEventListener('resize',rs);
+addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;cur.classList.add('on');dot.classList.add('on');
+ const n=performance.now();if(n-last>24){last=n;P.push({x:mx,y:my,vx:(Math.random()-.5)*1.2,vy:(Math.random()-.5)*1.2+.3,l:1,c:COL[Math.random()*5|0],r:2+Math.random()*3})}});
+document.addEventListener('pointerleave',()=>{cur.classList.remove('on');dot.classList.remove('on')});
+document.addEventListener('pointerover',e=>cur.classList.toggle('big',!!e.target.closest('a,button,.card,.fold,.stack,.eje,.stat')));
+addEventListener('pointerdown',()=>cur.classList.add('dn'));addEventListener('pointerup',()=>cur.classList.remove('dn'));
+(function f(){rx+=(mx-rx)*.16;ry+=(my-ry)*.16;cur.style.transform=`translate(${rx}px,${ry}px)`;dot.style.transform=`translate(${mx}px,${my}px)`;
+ cx.clearRect(0,0,W,H);for(let i=P.length-1;i>=0;i--){const q=P[i];q.x+=q.vx;q.y+=q.vy;q.l-=.025;if(q.l<=0){P.splice(i,1);continue}
+  cx.globalAlpha=q.l*.7;cx.fillStyle=q.c;cx.beginPath();cx.arc(q.x,q.y,q.r*q.l,0,6.283);cx.fill()}
+ requestAnimationFrame(f)})()})();
 </script>
 </body>
 </html>
