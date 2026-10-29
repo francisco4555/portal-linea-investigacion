@@ -64,7 +64,7 @@ section{padding:48px 0;border-top:1px solid var(--line)}
 .slot{display:flex;flex-direction:column;gap:14px;align-items:center}.slot .card{width:100%;flex:none}
 #dossier{margin-top:34px;display:none;perspective:1800px}
 #dossier.show{display:block}
-.book{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:470px;transform-style:preserve-3d;transform:rotateX(7deg);transform-origin:top;filter:drop-shadow(0 34px 34px rgba(0,0,0,.55));animation:rise .9s cubic-bezier(.2,.8,.2,1)}
+.book{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:470px;transform-style:preserve-3d;transform:rotateX(7deg);transform-origin:top;filter:drop-shadow(0 34px 34px rgba(0,0,0,.55));}
 @keyframes rise{from{opacity:0;transform:rotateX(40deg) translateY(40px)}to{opacity:1}}
 .pl{background:#f6f0e6;border-radius:10px 0 0 10px;padding:30px 28px;border:1px solid #d8cdb8;border-right:0;background-image:linear-gradient(90deg,transparent 92%,rgba(0,0,0,.08))}
 .stack{position:relative;width:min(230px,70%);aspect-ratio:4/5;cursor:pointer;margin-bottom:34px}.stack img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;border:6px solid #fff;box-shadow:0 8px 18px rgba(0,0,0,.3);transition:transform .7s cubic-bezier(.2,1.1,.3,1),opacity .5s}
@@ -216,6 +216,14 @@ footer .logo2{width:64px;height:64px;float:left;margin-right:14px;mix-blend-mode
 #curdot.dn{width:11px;height:11px;margin:-5.5px}
 #trail{position:fixed;inset:0;pointer-events:none;z-index:9998}
 @media(max-width:600px){header.inst .wrap{gap:12px;padding:16px 18px}.logo{width:84px;height:84px}.inst h1{font-size:20px;overflow-wrap:anywhere}.inst p{font-size:12.5px}.top .wrap{padding:6px 18px;font-size:11.5px}.wrap{padding-left:18px;padding-right:18px}.intro h2{font-size:30px}.draft{font-size:10.5px;padding:3px 9px;bottom:8px;right:8px}.tabs{top:-30px}.tabs button{padding:6px 9px;font-size:11.5px}.eq-title{font-size:28px}}
+.pull{transform-style:preserve-3d;transform:translate3d(var(--tx,0px),var(--ty,0px),0) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .9s cubic-bezier(.2,1.4,.3,1);cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;will-change:transform}
+.pull.drag{transition:none;cursor:grabbing}.pull.hv{transition:transform .12s linear}
+.pull .pg,.pull .pl,.pull .pr{cursor:inherit}.pull button,.pull a,.pull .stack{cursor:pointer}
+.book{transform-style:preserve-3d}.pl{transform-origin:right center;transform:rotateY(5deg)}.pr{transform-style:preserve-3d;transform-origin:left center;transform:rotateY(-5deg)}
+.book:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:26px;margin-left:-13px;background:linear-gradient(90deg,transparent,rgba(0,0,0,.22),transparent);pointer-events:none;z-index:15}
+.pulltip{text-align:center;color:#cbbfe8;font:12.5px ui-monospace,Menlo,monospace;letter-spacing:.06em;margin-top:18px}
+.pull.drag .book{filter:drop-shadow(0 50px 50px rgba(0,0,0,.6))}
+@media(max-width:760px){.pl,.pr{transform:none}.book:after{display:none}}
 </style>
 </head>
 <body>
@@ -334,19 +342,31 @@ P.querySelectorAll('.fold').forEach(b=>b.addEventListener('click',()=>{
  if(was){D.classList.remove('show');return}
  const i=ppl.findIndex(x=>x[3]===b.dataset.k),[g,n,r,f]=ppl[i];b.classList.add('open');b.setAttribute('aria-expanded','true');
  const L=r.split(' · '),V=(INV[f]||['<span class="pend">[por completar]</span>']);
- D.innerHTML=`<div class="book"><div class="cover"><div>EXPEDIENTE<small>LUDM-0${i+1}</small></div></div>
+ D.innerHTML=`<div class="pull"><div class="book"><div class="cover"><div>EXPEDIENTE<small>LUDM-0${i+1}</small></div></div>
 <div class="pl"><div class="no">EXP. LUDM-0${i+1} · UNRC</div><div class="stack" title="Clic para ver más fotos"><img src="img/${f}.jpg" alt="${g} ${n}"></div><h3>${g} ${n}</h3><small>Docente · Licenciatura en Urbanismo y Desarrollo Metropolitano</small><div><span class="st">ACTIVO</span></div></div>
 <div class="pr"><div class="tabs"></div><button class="bx" aria-label="Cerrar">×</button>
 <div class="pg"><h5>Semblanza</h5><p class="pend">[semblanza por completar]</p></div>
 <div class="pg"><h5>Líneas de investigación</h5><ul>${L.map(x=>`<li>${x}</li>`).join('')}</ul></div>
-<div class="pg"><h5>Investigaciones y productos</h5><ul>${V.map(x=>`<li>${x}</li>`).join('')}</ul></div></div></div>`;
+<div class="pg"><h5>Investigaciones y productos</h5><ul>${V.map(x=>`<li>${x}</li>`).join('')}</ul></div></div></div></div><div class="pulltip">↔ ARRASTRA LA HOJA PARA JALARLA · CLIC EN LAS PESTAÑAS PARA VOLTEAR</div>`;
  const stk=D.querySelector('.stack');let cur=0;const lay=()=>{const im=[...stk.children],n=im.length;im.forEach((e,j)=>{const d=(j-cur+n)%n;e.style.transform=`translate(${d*34}px,${-d*10}px) rotate(${-2.5+d*6}deg) scale(${1-d*.04})`;e.style.zIndex=n-d;e.style.opacity=d>3?0:1})};
  lay();stk.onclick=()=>{cur=(cur+1)%stk.children.length;lay()};
  for(let k=2;k<=6;k++){const im=new Image();im.alt=n;im.onload=()=>{stk.appendChild(im);lay()};im.src=`img/${f}-${k}.jpg`}
  const pg=[...D.querySelectorAll('.pg')],tb=D.querySelector('.tabs');
  const go=k=>{pg.forEach((e,j)=>{e.classList.toggle('t',j<k);e.style.zIndex=j<k?j:10-j});[...tb.children].forEach((t,j)=>t.classList.toggle('on',j===k))};
  ['Semblanza','Líneas','Investigaciones'].forEach((t,k)=>{const x=document.createElement('button');x.textContent=t;x.onclick=()=>go(k);tb.appendChild(x)});go(0);
- D.classList.add('show');D.querySelector('.bx').onclick=()=>b.click();D.scrollIntoView({behavior:reduceM?'auto':'smooth',block:'nearest'})}));
+ D.classList.add('show');D.querySelector('.bx').onclick=()=>b.click();
+ const pull=D.querySelector('.pull');
+ if(!reduceM){const fr=b.getBoundingClientRect(),pr=pull.getBoundingClientRect();const dx=fr.left+fr.width/2-(pr.left+pr.width/2),dy=fr.top+fr.height*.35-(pr.top+pr.height/2);
+  pull.animate([{transform:`translate3d(${dx}px,${dy}px,0) scale(.22) rotateX(78deg) rotateZ(-10deg)`,opacity:0},{opacity:1,offset:.22},{transform:'translate3d(0,0,0) scale(1) rotateX(0) rotateZ(0)',opacity:1}],{duration:1200,easing:'cubic-bezier(.2,1.05,.3,1)'});
+  let sx=0,sy=0,dr=false;const set=(tx,ty,rx,ry)=>{pull.style.setProperty('--tx',tx+'px');pull.style.setProperty('--ty',ty+'px');pull.style.setProperty('--rx',rx+'deg');pull.style.setProperty('--ry',ry+'deg')};
+  pull.addEventListener('pointerdown',e=>{if(e.target.closest('button,a,.stack'))return;dr=true;sx=e.clientX;sy=e.clientY;pull.classList.add('drag');pull.setPointerCapture(e.pointerId)});
+  pull.addEventListener('pointermove',e=>{const r=pull.getBoundingClientRect();
+   if(dr){const dx=e.clientX-sx,dy=e.clientY-sy,k=v=>Math.sign(v)*Math.min(Math.abs(v)*.55,150);set(k(dx),k(dy),-Math.max(-22,Math.min(22,dy*.12)),Math.max(-26,Math.min(26,dx*.12)))}
+   else{pull.classList.add('hv');set(0,0,((r.top+r.height/2-e.clientY)/r.height)*7,((e.clientX-r.left-r.width/2)/r.width)*10)}});
+  const end=()=>{if(!dr)return;dr=false;pull.classList.remove('drag');set(0,0,0,0)};
+  pull.addEventListener('pointerup',end);pull.addEventListener('pointercancel',end);
+  pull.addEventListener('pointerleave',()=>{if(!dr){pull.classList.remove('hv');set(0,0,0,0)}})}
+ D.scrollIntoView({behavior:reduceM?'auto':'smooth',block:'nearest'})}));
 const reduceM=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 P.querySelectorAll('.card').forEach(c=>{
