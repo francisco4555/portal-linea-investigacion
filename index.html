@@ -179,7 +179,7 @@ section>.kick{padding:4px 12px;border-radius:99px;background:var(--brand);color:
 .cols3{counter-reset:e}
 .eje:hover,.box:hover,figure:hover{box-shadow:0 26px 40px -18px rgba(60,20,110,.5)}
 section:nth-of-type(even){position:relative;isolation:isolate}
-#proyectos:before,#recursos:before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:50%;width:100vw;margin-left:-50vw;background:linear-gradient(180deg,#f3ecfb,#eaf1fb)}
+#recursos:before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:50%;width:100vw;margin-left:-50vw;background:linear-gradient(180deg,#f3ecfb,#eaf1fb)}
 th{color:var(--pu)}
 .badge{border-color:var(--pu);color:var(--pu);border-radius:99px;padding:2px 10px}
 footer{background:linear-gradient(160deg,#1b1230,#2a1257 60%,#14183a);position:relative}
@@ -195,7 +195,6 @@ footer:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;backg
 
 .proj{background:#fff;border-radius:24px;padding:30px;box-shadow:0 30px 50px -30px rgba(60,20,110,.45);border:1px solid #e6dff0;position:relative}
 .proj:before{content:"";position:absolute;left:30px;right:30px;top:0;height:4px;border-radius:0 0 4px 4px;background:var(--brand)}
-#proyectos h3{font-size:25px}
 figure{border-radius:18px;border:0;background:linear-gradient(160deg,#faf6ff,#eef6fb);box-shadow:0 20px 34px -22px rgba(60,20,110,.5);transform:perspective(900px) rotateY(-4deg)}
 figure:hover{transform:perspective(900px) rotateY(0) translateZ(10px)}
 table{border-radius:12px;overflow:hidden}
@@ -244,7 +243,7 @@ footer .logo2{width:64px;height:64px;float:left;margin-right:14px;mix-blend-mode
  <div><h1>Territorio, Movilidad y Conflictos Socioterritoriales</h1><p>Línea de investigación · Licenciatura en Urbanismo y Desarrollo Metropolitano · UNRC</p></div>
 </div></header>
 <div id="bar"></div><canvas id="trail"></canvas><div id="curdot"></div>
-<nav><div class="wrap"><a href="#presentacion">Presentación</a><a href="#ejes">Ejes temáticos</a><a href="#integrantes">Integrantes</a><a href="#proyectos">Proyectos</a><a href="#productos">Productos académicos</a><a href="#recursos">Recursos</a><a href="#contacto">Contacto</a></div></nav>
+<nav><div class="wrap"><a href="#presentacion">Presentación</a><a href="#ejes">Ejes temáticos</a><a href="#integrantes">Integrantes</a><a href="#productos">Productos académicos</a><a href="#recursos">Recursos</a><a href="#contacto">Contacto</a></div></nav>
 
 <main class="wrap">
 <div class="intro" id="presentacion">
@@ -283,27 +282,6 @@ footer .logo2{width:64px;height:64px;float:left;margin-right:14px;mix-blend-mode
  <p class="hint">Mueve el cursor sobre la carta para inclinarla · haz clic o toca para voltearla · abre su carpeta para ver foto, semblanza e investigaciones.</p>
 </section>
 
-<section id="proyectos">
- <div class="kick">Proyectos en curso</div>
- <h3>Siniestralidad motociclista en la Ciudad de México, 2023: análisis espacial en tres alcaldías</h3>
- <div class="proj">
-  <div>
-   <p>Estudio de los incidentes viales georreferenciados por SEMOVI en las alcaldías con mayor accidentabilidad. Se identifican concentraciones espaciales (puntos calientes) y se relacionan con características del territorio.</p>
-   <table>
-    <tr><th>Elemento</th><th>Descripción</th></tr>
-    <tr><td>Área de estudio</td><td>Iztapalapa, Cuauhtémoc, Gustavo A. Madero</td></tr>
-    <tr><td>Fuente</td><td>SEMOVI — incidentes viales georreferenciados</td></tr>
-    <tr><td>Método</td><td class="pend">[p. ej. densidad de Kernel, Getis-Ord Gi*]</td></tr>
-    <tr><td>Estado</td><td>Manuscrito en preparación</td></tr>
-    <tr><td>Revista objetivo</td><td>Revista Q1 de movilidad y territorio</td></tr>
-   </table>
-  </div>
-  <figure>
-   <svg id="map" viewBox="0 0 400 300" width="100%"></svg>
-   <figcaption>Figura 1. Esquema ilustrativo de concentración de incidentes por alcaldía. En la versión final se sustituye por el mapa con datos reales.</figcaption>
-  </figure>
- </div>
-</section>
 
 
 
@@ -401,11 +379,7 @@ P.querySelectorAll('.card').forEach(c=>{
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 P.querySelectorAll('.card').forEach(c=>io.observe(c));
 document.querySelectorAll('section>.kick,.eje,.pub,.proj').forEach(el=>{el.classList.add('rv');io.observe(el)});
-const m=document.getElementById('map');let s='<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#efe7fb"/><stop offset="1" stop-color="#e3f1f8"/></linearGradient><linearGradient id="zn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#f1e8fa"/></linearGradient><filter id="gl"><feGaussianBlur stdDeviation=".8"/></filter></defs><rect width="400" height="300" fill="url(#bg)"/>';
-const z=[["Gustavo A. Madero",205,70,"M150 30 L265 25 L280 105 L190 120 L140 90Z"],["Cuauhtémoc",175,160,"M140 125 L215 122 L222 195 L150 200Z"],["Iztapalapa",290,230,"M225 185 L360 180 L375 270 L250 285 L215 240Z"]];
-z.forEach(([n,x,y,d])=>{s+=`<path d="${d}" fill="url(#zn)" stroke="#6a2c91" stroke-width="1.2"/>`;for(let k=0;k<45;k++){const a=Math.random()*6.28,r=Math.random()**1.7*35;s+=`<circle cx="${x+Math.cos(a)*r}" cy="${y+Math.sin(a)*r}" r="2" fill="#d4157f" opacity=".7" filter="url(#gl)"/>`}s+=`<text x="${x}" y="${y-40}" font-family="Source Sans 3" font-size="11" fill="#2b1558" font-weight="600" text-anchor="middle">${n}</text>`});
-s+='<text x="12" y="290" font-size="10" fill="#5b6474" font-family="Source Sans 3">N ↑ · Esquema sin escala</text>';
-m.innerHTML=s;
+
 
 (()=>{if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
 const DK='#dossier,.intro,#integrantes,footer,.top,.card .face,.cover,.fold.open';let dk=false;
